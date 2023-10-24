@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <array name="category">
+        <item>Maths</item>
+        <item>Science</item>
+        <item>History</item>
+
+    </array>
+</resources>
