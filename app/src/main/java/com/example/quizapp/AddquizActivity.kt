@@ -19,6 +19,15 @@ class AddquizActivity : AppCompatActivity() {
 
         binding = ActivityAddquizBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        val updateButton = binding.updateButton
+
+        // Set a click listener for the update button
+        updateButton.setOnClickListener {
+            // Create an intent to navigate to the SelectCategoryActivity
+            val intent = Intent(this, SelectCategoryActivity::class.java)
+            startActivity(intent)
+        }
         binding.saveBtn.setOnClickListener {
 
             val question = binding.question.text.toString()
@@ -54,6 +63,7 @@ class AddquizActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
 
     }
 }

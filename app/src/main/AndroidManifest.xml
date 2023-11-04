@@ -32,6 +32,9 @@
             android:parentActivityName=".MainActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProfileActivity" />
+        <activity android:name=".SelectCategoryActivity" />
+        <activity android:name=".ListQuestionsActivity" />
+        <activity android:name=".UpdateQuestionActivity" />
     </application>
 
 </manifest>
