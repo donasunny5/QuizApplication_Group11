@@ -60,10 +60,10 @@ class QuizActivity : AppCompatActivity() {
     ) {
         fun isCorrect(selectedOption: String): Boolean {
             // Convert correctOptionIndex to an integer for index access
-            val correctIndex = correctOptionIndex.toIntOrNull()
+            val correctIndex = correctOptionIndex
 
             // Check if selectedOption matches the correct option
-            return correctIndex != null && correctIndex >= 0 && correctIndex < options.size && options[correctIndex] == selectedOption
+            return correctIndex != null  && correctIndex == selectedOption
         }
     }
 
@@ -113,7 +113,7 @@ class QuizActivity : AppCompatActivity() {
                 backButton.visibility = View.GONE
             }
         } else {
-            questionTextView.text = "Quiz completed"
+            questionTextView.text = "Quiz completed.Your score: $score"
             answerRadioGroup.removeAllViews()
             submitButton.visibility = View.GONE
             backButton.isVisible = true
