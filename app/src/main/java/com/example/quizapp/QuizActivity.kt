@@ -28,7 +28,7 @@ class QuizActivity : AppCompatActivity() {
     private val quizData: MutableList<QuizQuestion> = mutableListOf()
     private var currentCategory: String = ""
     private var currentQuestionIndex = 0
-    private var score = 0
+    private var score = 1
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< Updated upstream
     android:padding="16dp"
     tools:context=".UpdateQuestionActivity">
 
@@ -42,9 +41,7 @@
         android:layout_height="wrap_content"
         android:hint="Correct Answer"
         app:layout_constraintTop_toBottomOf="@id/option3EditText" />
-=======
 
-    tools:context=".UpdateQuestionActivity">
     <EditText
         android:id="@+id/option1EditText"
         android:layout_width="378dp"
@@ -142,46 +139,35 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.055" />
->>>>>>> Stashed changes
+
 
 
     <Button
         android:id="@+id/updateButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
         android:layout_marginBottom="284dp"
         android:text="Update"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.233"
-=======
-        android:layout_marginBottom="56dp"
-        android:text="Update"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.258"
->>>>>>> Stashed changes
-        app:layout_constraintStart_toStartOf="parent" />
+/>
 
     <Button
         android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< Updated upstream
         android:layout_marginBottom="284dp"
         android:text="Delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.517"
-=======
         android:layout_marginBottom="56dp"
         android:text="Delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.416"
->>>>>>> Stashed changes
-        app:layout_constraintStart_toEndOf="@+id/updateButton" />
+ />
 
     <Spinner
         android:id="@+id/categoryUpdateSpinner"
