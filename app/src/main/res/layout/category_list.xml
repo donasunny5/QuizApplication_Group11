@@ -24,6 +24,12 @@
         android:textStyle="bold"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"/>
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/UserName"
+        android:queryHint="Search Categories"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryListRecyclerView"

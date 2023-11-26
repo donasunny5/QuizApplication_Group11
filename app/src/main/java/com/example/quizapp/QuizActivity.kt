@@ -113,7 +113,21 @@ class QuizActivity : AppCompatActivity() {
                 backButton.visibility = View.GONE
             }
         } else {
+<<<<<<< Updated upstream
             questionTextView.text = "Quiz completed.Your score: $score"
+=======
+            if (score == quizData.size) {
+                questionTextView.text = "Excellent! You got all questions correct."
+                println("Score: $score")
+            } else if (score >= quizData.size - 2) {
+                questionTextView.text = "Good job! You performed well."
+                println("Score: $score")
+            } else {
+                questionTextView.text = "Need to improve. You got no questions correct."
+                println("Score: $score")
+            }
+
+>>>>>>> Stashed changes
             answerRadioGroup.removeAllViews()
             submitButton.visibility = View.GONE
             backButton.isVisible = true
@@ -121,6 +135,10 @@ class QuizActivity : AppCompatActivity() {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
             }
+
+            // Print the result and score to the console
+            println("Result: ${questionTextView.text}")
+            println("Score: $score")
         }
     }
 
