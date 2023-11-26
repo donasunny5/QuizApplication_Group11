@@ -46,15 +46,9 @@ class UpdateQuestionActivity : AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 // Handle the selected category
                 val selectedCategory = categories[position]
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
                 Toast.makeText(this@UpdateQuestionActivity, "Selected Category: $selectedCategory", Toast.LENGTH_SHORT).show()
-=======
 
->>>>>>> Stashed changes
-=======
-
->>>>>>> Stashed changes
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {

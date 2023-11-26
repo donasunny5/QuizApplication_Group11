@@ -28,7 +28,7 @@ class QuizActivity : AppCompatActivity() {
     private val quizData: MutableList<QuizQuestion> = mutableListOf()
     private var currentCategory: String = ""
     private var currentQuestionIndex = 0
-    private var score = 1
+    private var score = 0
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -113,21 +113,19 @@ class QuizActivity : AppCompatActivity() {
                 backButton.visibility = View.GONE
             }
         } else {
-<<<<<<< Updated upstream
-            questionTextView.text = "Quiz completed.Your score: $score"
-=======
+
+
             if (score == quizData.size) {
-                questionTextView.text = "Excellent! You got all questions correct."
-                println("Score: $score")
+                questionTextView.text = "Quiz completed. Your Score: $score,Excellent! You got all questions correct."
+
             } else if (score >= quizData.size - 2) {
-                questionTextView.text = "Good job! You performed well."
-                println("Score: $score")
+                questionTextView.text = "Quiz completed. Your Score: $score, Good job! You performed well."
+
             } else {
-                questionTextView.text = "Need to improve. You got no questions correct."
-                println("Score: $score")
+                questionTextView.text = "Quiz completed. Your Score: $score, Need to improve."
+
             }
 
->>>>>>> Stashed changes
             answerRadioGroup.removeAllViews()
             submitButton.visibility = View.GONE
             backButton.isVisible = true
