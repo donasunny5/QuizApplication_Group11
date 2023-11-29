@@ -115,15 +115,17 @@ class QuizActivity : AppCompatActivity() {
         } else {
 
 
-            if (score == quizData.size) {
-                questionTextView.text = "Quiz completed. Your Score: $score,Excellent! You got all questions correct."
+            val totalQuestions = quizData.size
+            val percentage = (score.toDouble() / totalQuestions) * 100
 
-            } else if (score >= quizData.size - 2) {
-                questionTextView.text = "Quiz completed. Your Score: $score, Good job! You performed well."
+            if (percentage >= 100) {
+                questionTextView.text = "Quiz completed.\nYour Score: $score/$totalQuestions\nExcellent! You got $percentage%. You got all questions correct."
+
+            } else if (percentage >= 75) {
+                questionTextView.text = "Quiz completed.\nYour Score: $score/$totalQuestions\nGood job! You performed well with $percentage%."
 
             } else {
-                questionTextView.text = "Quiz completed. Your Score: $score, Need to improve."
-
+                questionTextView.text = "Quiz completed.\nYour Score: $score/$totalQuestions\nNeed to improve. You scored $percentage%."
             }
 
             answerRadioGroup.removeAllViews()
