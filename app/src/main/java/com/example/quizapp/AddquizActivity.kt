@@ -1,10 +1,12 @@
 package com.example.quizapp
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.graphics.drawable.DrawableCompat.applyTheme
 import com.example.quizapp.databinding.ActivityAddquizBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -16,7 +18,7 @@ class AddquizActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        applyTheme()
         binding = ActivityAddquizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -49,9 +51,9 @@ class AddquizActivity : AppCompatActivity() {
                 categorySpinner.setSelection(0)
 
 
-                Toast.makeText(this,"Successfully Saved",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Successfully Saved", Toast.LENGTH_SHORT).show()
 
-            }.addOnFailureListener{ error ->
+            }.addOnFailureListener { error ->
 
                 val errorMessage = error.message
                 Toast.makeText(this, "Failed: $errorMessage", Toast.LENGTH_SHORT).show()
@@ -63,7 +65,16 @@ class AddquizActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+    }
+        private fun applyTheme() {
+            val isDarkMode = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+                .getBoolean("DarkMode", false)
 
+            if (isDarkMode) {
+                setTheme(R.style.DarkTheme)
+            } else {
+                setTheme(R.style.AppTheme)
+            }
+        }
 
     }
-}

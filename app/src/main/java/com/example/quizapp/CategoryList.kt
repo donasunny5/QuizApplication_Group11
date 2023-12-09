@@ -1,5 +1,6 @@
 package com.example.quizapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import android.view.Menu
 import android.widget.SearchView
+import androidx.core.graphics.drawable.DrawableCompat.applyTheme
 
 import java.util.*
 import kotlin.collections.ArrayList
@@ -24,8 +26,8 @@ class CategoryList : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyTheme()
         setContentView(R.layout.category_list)
-
         // Initialize views
         categoryRecyclerView = findViewById(R.id.categoryListRecyclerView)
         searchView = findViewById(R.id.searchView)
@@ -86,5 +88,15 @@ class CategoryList : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)
         return true
+    }
+    private fun applyTheme() {
+        val isDarkMode = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+            .getBoolean("DarkMode", false)
+
+        if (isDarkMode) {
+            setTheme(R.style.DarkTheme)
+        } else {
+            setTheme(R.style.AppTheme)
+        }
     }
 }

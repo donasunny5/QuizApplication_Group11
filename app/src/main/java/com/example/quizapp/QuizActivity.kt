@@ -1,6 +1,7 @@
 package com.example.quizapp
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -10,6 +11,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.DrawableCompat.applyTheme
 import androidx.core.view.isVisible
 import com.google.firebase.FirebaseApp
 import com.google.firebase.database.DataSnapshot
@@ -33,6 +35,7 @@ class QuizActivity : AppCompatActivity() {
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyTheme()
         setContentView(R.layout.quiz_activity)
 
         FirebaseApp.initializeApp(this);
@@ -171,5 +174,15 @@ class QuizActivity : AppCompatActivity() {
             else -> return super.onOptionsItemSelected(item)
         }
 
+    }
+    private fun applyTheme() {
+        val isDarkMode = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+            .getBoolean("DarkMode", false)
+
+        if (isDarkMode) {
+            setTheme(R.style.DarkTheme)
+        } else {
+            setTheme(R.style.AppTheme)
+        }
     }
 }

@@ -1,5 +1,6 @@
 package com.example.quizapp
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,7 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyTheme()
         setContentView(R.layout.profile_activity)
 
         etName = findViewById(R.id.etName)
@@ -33,7 +35,18 @@ class ProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please enter your name", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+        private fun applyTheme() {
+            val isDarkMode = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+                .getBoolean("DarkMode", false)
+
+            if (isDarkMode) {
+                setTheme(R.style.DarkTheme)
+            } else {
+                setTheme(R.style.AppTheme)
+            }
+        }
 
 
     }
-}
+

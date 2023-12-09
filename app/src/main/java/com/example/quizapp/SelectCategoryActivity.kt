@@ -1,5 +1,6 @@
 package com.example.quizapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.DrawableCompat.applyTheme
 
 class SelectCategoryActivity : AppCompatActivity() {
 
@@ -16,6 +18,7 @@ class SelectCategoryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyTheme()
         setContentView(R.layout.activity_select_category)
 
         categorySpinner = findViewById(R.id.categorySpinner)
@@ -43,6 +46,16 @@ class SelectCategoryActivity : AppCompatActivity() {
             val intent = Intent(this, ListQuestionsActivity::class.java)
             intent.putExtra("SELECTED_CATEGORY", selectedCategory)
             startActivity(intent)
+        }
+    }
+    private fun applyTheme() {
+        val isDarkMode = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+            .getBoolean("DarkMode", false)
+
+        if (isDarkMode) {
+            setTheme(R.style.DarkTheme)
+        } else {
+            setTheme(R.style.AppTheme)
         }
     }
 }

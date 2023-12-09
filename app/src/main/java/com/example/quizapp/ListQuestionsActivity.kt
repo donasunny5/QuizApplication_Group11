@@ -1,10 +1,12 @@
 package com.example.quizapp
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.DrawableCompat.applyTheme
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
@@ -20,6 +22,7 @@ class ListQuestionsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyTheme()
         setContentView(R.layout.activity_list_questions)
 
         categoryLabel = findViewById(R.id.categoryLabel)
@@ -84,5 +87,15 @@ class ListQuestionsActivity : AppCompatActivity() {
                 // Handle database error
             }
         })
+    }
+    private fun applyTheme() {
+        val isDarkMode = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+            .getBoolean("DarkMode", false)
+
+        if (isDarkMode) {
+            setTheme(R.style.DarkTheme)
+        } else {
+            setTheme(R.style.AppTheme)
+        }
     }
 }

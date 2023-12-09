@@ -74,13 +74,13 @@
         android:text="User" />
 
     <Button
-        android:id="@+id/helpButton"
+        android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="154dp"
         android:layout_marginEnd="30dp"
-        android:text="Help?" />
+        android:text="Settings" />
 </RelativeLayout>
 

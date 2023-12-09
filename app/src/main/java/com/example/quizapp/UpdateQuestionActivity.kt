@@ -1,5 +1,6 @@
 package com.example.quizapp
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -10,6 +11,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
+import androidx.core.graphics.drawable.DrawableCompat.applyTheme
 import com.google.firebase.database.*
 
 class UpdateQuestionActivity : AppCompatActivity() {
@@ -26,6 +28,7 @@ class UpdateQuestionActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyTheme()
         setContentView(R.layout.activity_update_question)
 
         categorySpinner = findViewById(R.id.categoryUpdateSpinner)
@@ -136,6 +139,15 @@ class UpdateQuestionActivity : AppCompatActivity() {
     }
 
 
+    private fun applyTheme() {
+        val isDarkMode = getSharedPreferences("Settings", Context.MODE_PRIVATE)
+            .getBoolean("DarkMode", false)
 
+        if (isDarkMode) {
+            setTheme(R.style.DarkTheme)
+        } else {
+            setTheme(R.style.AppTheme)
+        }
+    }
 
 }
