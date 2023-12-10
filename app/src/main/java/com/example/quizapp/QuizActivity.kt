@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
@@ -19,6 +20,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.util.concurrent.TimeUnit
 
 class QuizActivity : AppCompatActivity() {
 
@@ -26,6 +28,11 @@ class QuizActivity : AppCompatActivity() {
     private lateinit var answerRadioGroup: RadioGroup
     private lateinit var submitButton: Button
     private lateinit var backButton: Button
+
+    private lateinit var timerTextView: TextView
+    private lateinit var countDownTimer: CountDownTimer
+    private var timeLeftInMillis: Long = 10000 // 60 seconds
+    private val countdownInterval: Long = 1000 // 1 second
 
     private val quizData: MutableList<QuizQuestion> = mutableListOf()
     private var currentCategory: String = ""
@@ -40,6 +47,10 @@ class QuizActivity : AppCompatActivity() {
 
         FirebaseApp.initializeApp(this);
 
+        timerTextView = findViewById(R.id.timerTextView)
+
+
+        startTimer()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -69,6 +80,7 @@ class QuizActivity : AppCompatActivity() {
             return correctIndex != null  && correctIndex == selectedOption
         }
     }
+
 
     private fun loadQuizQuestions(category: String) {
         val databaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("Quiz") // Change "Quiz" to "questions"
@@ -102,6 +114,7 @@ class QuizActivity : AppCompatActivity() {
 
 
     private fun showQuestion() {
+countDownTimer.start()
         if (currentQuestionIndex < quizData.size) {
             val currentQuestion = quizData[currentQuestionIndex]
 
@@ -114,10 +127,14 @@ class QuizActivity : AppCompatActivity() {
                 radioButton.id = View.generateViewId()
                 answerRadioGroup.addView(radioButton)
                 backButton.visibility = View.GONE
+
+
             }
+
+
         } else {
 
-
+            countDownTimer.cancel()
             val totalQuestions = quizData.size
             val percentage = (score.toDouble() / totalQuestions) * 100
 
@@ -142,7 +159,10 @@ class QuizActivity : AppCompatActivity() {
             // Print the result and score to the console
             println("Result: ${questionTextView.text}")
             println("Score: $score")
+            countDownTimer.cancel()
+            timerTextView.visibility = View.GONE
         }
+
     }
 
     private fun checkAnswer() {
@@ -161,6 +181,7 @@ class QuizActivity : AppCompatActivity() {
 
                 currentQuestionIndex++
                 showQuestion()
+
             }
         }
     }
@@ -185,4 +206,33 @@ class QuizActivity : AppCompatActivity() {
             setTheme(R.style.AppTheme)
         }
     }
+    private fun startTimer() {
+        countDownTimer = object : CountDownTimer(timeLeftInMillis, countdownInterval) {
+            override fun onTick(millisUntilFinished: Long) {
+                timeLeftInMillis = millisUntilFinished
+                updateTimerText()
+
+            }
+
+            override fun onFinish() {
+
+                currentQuestionIndex++
+                showQuestion()
+
+            }
+        }
+
+        countDownTimer.start()
+    }
+    private fun updateTimerText() {
+        val minutes = TimeUnit.MILLISECONDS.toMinutes(timeLeftInMillis)
+        val seconds = TimeUnit.MILLISECONDS.toSeconds(timeLeftInMillis) % 60
+        val timeString = String.format("%02d:%02d", minutes, seconds)
+        timerTextView.text = timeString
+
+    }
+
+    // Make sure to cancel the timer when the activity is destroyed
+
 }
+
